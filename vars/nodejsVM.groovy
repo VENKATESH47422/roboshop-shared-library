@@ -89,7 +89,7 @@ def call(Map configMap){
             stage('Deploy') {
                 when {
                     expression{
-                        params.Deploy=true
+                        params.Deploy
                     }
                 }
                 steps {
@@ -97,7 +97,7 @@ def call(Map configMap){
                             def params = [
                                 string(name: 'version', value: "$packageVersion"),
                                 string(name: 'environment', value: "dev")
-                                booleanParam(name: 'Create', value: "${params.Deploy}")
+                                booleanParam(name: 'Create', defaultValue: 'true' description : 'Create new Deployment?' )
                             ]
                             build job: "../${configMap.component}-deploy", wait: true, parameters: params
                         }
