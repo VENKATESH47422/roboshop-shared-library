@@ -89,7 +89,7 @@ def call(Map configMap){
             stage('Deploy') {
                 when {
                     expression{
-                        params.Deploy
+                        params.Deploy=true
                     }
                 }
                 steps {
