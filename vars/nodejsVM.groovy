@@ -96,8 +96,8 @@ def call(Map configMap){
                     script {
                             def params = [
                                 string(name: 'version', value: "$packageVersion"),
-                                string(name: 'environment', value: "dev")
-                                booleanParam([name: 'Create', defaultValue: true, description: 'Create new Deployment?'])
+                                string(name: 'environment', value: "dev"),
+                                [$class: 'BooleanParameterValue', name: 'Create', value: true]
                             ]
                             build job: "../${configMap.component}-deploy", wait: true, parameters: params
                         }
